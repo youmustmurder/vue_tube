@@ -21,6 +21,9 @@ export default {
 
     }
   },
+  mounted () {
+    this.$store.dispatch('LOAD_VIDEOS');
+  }
 }
 </script>
 
