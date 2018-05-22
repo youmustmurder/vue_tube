@@ -1,29 +1,33 @@
 <template>
-
-  <div class="video-player">
-    <video-container></video-container>
-    <video-list></video-list>
-  </div>
+  <v-layout class="video-player" row wrap>
+    <v-flex class="md9">
+      <video-container></video-container>
+    </v-flex>
+    <v-flex class="md3">
+      <video-list-similar></video-list-similar>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
+import api from '@/components/api/api.js'
 import VideoContainer from '@/components/VideoContainer'
-import VideoList from '@/components/VideoList'
+import VideoListSimilar from '@/components/VideoListSimilar'
 
 export default {
   name: 'VideoPlayer',
   components: {
     'video-container': VideoContainer,
-    'video-list': VideoList
+    'video-list-similar': VideoListSimilar
   },
   data () {
     return {
-
+      activeVideo: ''
     }
   },
   mounted () {
-    this.$store.dispatch('LOAD_VIDEOS');
-  }
+    //this.$store.dispatch('LOAD_VIDEOS');
+  },
 }
 </script>
 

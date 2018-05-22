@@ -1,28 +1,41 @@
 <template>
   <div class="video-container">
-    <iframe :src="activeVideo.youtubeURL" width="640" height="360" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
-    <h3>{{ activeVideo.title }}</h3>
-    <div class="row">
-      <p>{{ activeVideo.views }} views</p>
-      <p>{{ activeVideo.likes }} <button @click="addLike()">Like</button></p>
+    <iframe :src="urlVideo()" height="600" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+    <h3>{{ activeVideo.data.items[0].snippet.title }}</h3>
+    <div class="video-container-footer">
+      <div class="video-conntainer__channel-info">
+        <div class="channel-block">{{ activeVideo.data.items[0].snippet.channelTitle }}</div>
+        <div class="date_added">{{ activeVideo.data.items[0].snippet.publishedAt }}</div>
+      </div>
+      <p>{{ activeVideo.data.items[0].snippet.description }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import api from '@/components/api/api.js'
+
 export default {
-  computed: {
-    activeVideo () {
-      return this.$store.state.activeVideo;
+  data () {
+    return {
+      activeVideo: '',
     }
   },
   methods: {
-    addLike() {
-      this.$store.commit('increment_like');
+    urlVideo () {
+      return 'https://www.youtube.com/embed/' + this.$route.query.id;
     }
+  },
+  mounted () {
+    api.getVideoById(this, this.$route.query.id);
   }
 }
 </script>
 
 <style lang="scss">
+  .video-container {
+    iframe {
+      width: 100%;
+    }
+  }
 </style>

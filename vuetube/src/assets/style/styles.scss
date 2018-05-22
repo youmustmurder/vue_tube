@@ -19,19 +19,18 @@
 }
 .video-player {
   display: flex;
-  width: 1200px;
   margin: auto;
-}
-.video-container {
-  margin-right: 40px;
-}
-.row {
-  display: flex;
-  justify-content: space-between;
 }
 button {
   background: #d0021b;
   color: #fff;
   border: none;
   padding: 10px 20px;
+}
+.video-container-footer {
+  .video-conntainer__channel-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
