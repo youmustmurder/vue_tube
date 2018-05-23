@@ -1,7 +1,13 @@
+<style scoped lang="scss">
+.video-list .card .card__title:after {
+  display: none;
+}
+</style>
+
 <template>
   <v-container grid-list-md>
     <v-layout row wrap grid-list-md class="video-list">
-      <v-flex xs12 class="thumbnail" v-for="video in related" @click="chooseVideo(video)">
+      <v-flex xs12 class="thumbnail" v-for="video in related" @click="chooseVideo(video.id.videoId)">
         <v-card>
           <v-card-media :src="video.snippet.thumbnails.medium.url" class="thumbnail-img" height="100px"></v-card-media>
           <v-card-title class="thumbnail-info">
@@ -25,15 +31,11 @@ export default {
   },
   methods: {
     chooseVideo(video) {
-      this.$store.commit('active_video', video);
-      this.$store.commit('increment_views', video);
-    },
+      api.goVideo(this, video);
+    }
   },
   mounted () {
     api.relatedVideoById(this, this.$route.query.id);
   }
 }
 </script>
-
-<style lang="css">
-</style>

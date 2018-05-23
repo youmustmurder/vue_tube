@@ -29,7 +29,7 @@ export default {
   },
   mounted () {
     api.getCommentsById(this, this.$route.query.id);
-  },
+  }
 }
 </script>
 

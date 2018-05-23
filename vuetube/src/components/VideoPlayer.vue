@@ -28,9 +28,6 @@ export default {
       activeVideo: ''
     }
   },
-  mounted () {
-    //this.$store.dispatch('LOAD_VIDEOS');
-  },
 }
 </script>
 

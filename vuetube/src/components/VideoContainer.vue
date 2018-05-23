@@ -4,7 +4,7 @@
     <h3 class="video-container__title">{{ activeVideo.data.items[0].snippet.title }}</h3>
     <div class="video-container-footer">
       <div class="video-conntainer__channel-info">
-        <v-flex xs12 v-if="channel.snippet">
+        <v-flex xs12 v-if="channel.snippet" @click="goChannel()">
           <v-avatar size="80">
             <img :src="channel.snippet.thumbnails.default.url">
           </v-avatar>
@@ -30,6 +30,9 @@ export default {
   methods: {
     urlVideo () {
       return 'https://www.youtube.com/embed/' + this.$route.query.id;
+    },
+    goChannel () {
+      this.$router.push({ path: 'channel', query: { id: this.channel.id}});
     }
   },
   mounted () {

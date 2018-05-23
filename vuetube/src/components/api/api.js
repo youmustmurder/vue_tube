@@ -36,14 +36,15 @@ export default {
     }).catch(e => console.log(e));
   },
 
-  getChannelById(context, id) {
+  getChannelById(context, id, part = 'snippet,contentDetails,statistics') {
     Axios.get('https://www.googleapis.com/youtube/v3/channels', {
       params: {
         key: youtube_key,
         id: id,
-        part: 'snippet,contentDetails,statistics'
+        part: part
       }
     }).then(res => {
+      console.log(res.data.items[0]);
       context.channel = res.data.items[0];
     }).catch(e => console.log(e));
   },
@@ -83,7 +84,6 @@ export default {
         part: 'snippet, replies'
       }
     }).then(res => {
-      console.log(res);
       context.comments = res.data.items;
     }).catch(e => console.log(e));
   }
