@@ -1,12 +1,17 @@
 <template>
   <div class="video-container">
     <iframe :src="urlVideo()" height="600" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
-    <h3>{{ activeVideo.data.items[0].snippet.title }}</h3>
+    <h3 class="video-container__title">{{ activeVideo.data.items[0].snippet.title }}</h3>
     <div class="video-container-footer">
       <div class="video-conntainer__channel-info">
-        <div class="channel-block">{{ activeVideo.data.items[0].snippet.channelTitle }}</div>
-        <div class="date_added">{{ activeVideo.data.items[0].snippet.publishedAt }}</div>
+        <v-flex xs12 v-if="channel.snippet">
+          <v-avatar size="80">
+            <img :src="channel.snippet.thumbnails.default.url">
+          </v-avatar>
+          <span class="channel-block">{{ channel.snippet.title }}</span>
+        </v-flex>
       </div>
+      <div class="date_added">Время публикации: {{ activeVideo.data.items[0].snippet.publishedAt }}</div>
       <p>{{ activeVideo.data.items[0].snippet.description }}</p>
     </div>
   </div>
@@ -19,6 +24,7 @@ export default {
   data () {
     return {
       activeVideo: '',
+      channel: ''
     }
   },
   methods: {
@@ -28,7 +34,7 @@ export default {
   },
   mounted () {
     api.getVideoById(this, this.$route.query.id);
-  }
+  },
 }
 </script>
 

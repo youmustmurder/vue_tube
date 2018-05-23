@@ -30,7 +30,8 @@
                       append-icon="search"
                       placeholder="Поиск..."
                       color="white"
-                      append-icon-cb="() => {}"
+                      :append-icon-cb="() => { this.$router.push({ path: 'search', query: { q: search}}); }"
+                      v-model="search"
                       hide-details
                       dark
                       single-line>
@@ -56,6 +57,7 @@ export default {
   data () {
     return {
       drawer: true,
+      search: '',
       items: [
         { icon: 'trending_up', text: 'Популярное', link: '/' },
         { icon: 'history', text: 'История', link: '/history' }

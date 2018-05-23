@@ -3,9 +3,6 @@
   img {
     width: 168px;
   }
-  .thumbnail-info {
-    margin-left: 20px;
-  }
   h3 {
     font-size: 16px;
   }
@@ -27,8 +24,18 @@ button {
   border: none;
   padding: 10px 20px;
 }
+.video-container {
+  padding: 8px 0 0 0;
+  .video-container__title {
+    margin: 20px 0;
+  }
+}
 .video-container-footer {
+  .date_added {
+    margin: 0 0 10px 0;
+  }
   .video-conntainer__channel-info {
+    margin: 20px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
